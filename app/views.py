@@ -1,7 +1,9 @@
 __author__ = 'm12sl'
 
 from app import app
-from flask import render_template, jsonify, send_from_directory
+from flask import render_template, jsonify, send_from_directory, Response
+
+from itertools import cycle
 
 # just single page application:
 @app.route('/')
@@ -26,3 +28,16 @@ def command(cmd=None):
 @app.route('/bc/<path:filename>')
 def bc_static(filename):
     return send_from_directory(app.root_path + '/bower_components/', filename)
+
+
+def gen():
+    files = ['video-stream/wtf.png', 'video-stream/wtf2.png']
+    frame = cycle([file(f, 'rb').read() for f in files])
+    while True:
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame.next() + b'\r\n')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')

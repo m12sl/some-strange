@@ -12,7 +12,8 @@
 
 <div class="row">
     <div class="col-lg-8">
-        <img src="holder.js/640x480">
+        <!--<img src="holder.js/640x480">-->
+        <img src="{{ url_for('video_feed') }}">
     </div>
     <div class="col-lg-4">
         <button class="btn btn-default" type="submit" data-cmd="{{ url_for('command', cmd='left') }}">
