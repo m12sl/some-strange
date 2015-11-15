@@ -3,23 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
+    <link href="{{ url_for('bc_static', filename='bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('bc_static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
 </head>
 <body>
 
+<div class="row">
+    <div class="col-lg-8">
+        <img src="holder.js/640x480">
+    </div>
+    <div class="col-lg-4">
+        <button class="btn btn-default" type="submit" data-cmd="{{ url_for('command', cmd='left') }}">
+            <i class="fa fa-angle-left"></i>left
+        </button>
+        <button class="btn btn-default" type="submit" data-cmd="{{ url_for('command', cmd='right') }}" >
+            <i class="fa fa-angle-right"></i>right
+        </button>
+        <button class="btn btn-default" type="submit" data-cmd="{{ url_for('command', cmd='up') }}" >
+            <i class="fa fa-angle-up"></i>up
+        </button>
+        <button class="btn btn-default" type="submit" data-cmd="{{ url_for('command', cmd='down') }}" >
+            <i class="fa fa-angle-down"></i>down
+        </button>
 
-<div class='btn' data-cmd="{{ url_for('command', cmd='right') }}">right</div>
-<div class='btn' data-cmd="{{ url_for('command', cmd='left') }}">left</div>
-<div class='btn' data-cmd="{{ url_for('command', cmd='up') }}">up</div>
-<div class='btn' data-cmd="{{ url_for('command', cmd='down') }}">down</div>
+    </div>
+</div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<script src="{{ url_for('bc_static', filename='jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ url_for('bc_static', filename='holderjs/holder.js') }}"></script>
 
 <script>
-    var debug;
-    $('div').click(function (event) {
+    $('button').click(function (event) {
         var url = $(this).attr('data-cmd');
-        debug = url;
         $.post(url,{}, function (data, textStatus, jqXHR) {
             console.log(data);
         });

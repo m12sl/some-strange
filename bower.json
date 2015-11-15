@@ -1,0 +1,26 @@
+{
+  "name": "some-strange",
+  "homepage": "https://github.com/m12sl/some-strange",
+  "authors": [
+    "Alex Ozerin <m12sl@yandex.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "font-awesome": "~4.4.0",
+    "holderjs": "~2.9.0"
+  }
+}
